@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Tailwind Gallery - 이미지 검색 웹앱
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 사용자가 이미지를 검색하고, 검색된 이미지를 태그와 함께 표시하는 **이미지 검색 웹 애플리케이션**입니다. 사용자는 검색어를 입력하고 관련된 이미지를 Pixabay API를 통해 가져와 화면에 표시할 수 있습니다. 이 웹 애플리케이션은 `create-react-app`으로 생성된 리액트 앱이며, `Tailwind CSS`를 사용해 스타일링되었습니다.
 
-## Available Scripts
+## 🚀 기능
 
-In the project directory, you can run:
+- **이미지 검색**: 사용자가 입력한 검색어에 맞는 이미지를 `Pixabay API`에서 가져와 화면에 표시합니다.
+- **이미지 카드**: 검색된 이미지는 각각 카드 형태로 표시되며, 관련된 태그와 이미지 정보(조회수, 다운로드 수, 좋아요 수)도 함께 보여집니다.
+- **반응형 디자인**: `Tailwind CSS`를 사용하여 다양한 화면 크기에서 잘 동작하는 반응형 UI를 구현했습니다.
 
-### `npm start`
+## 🌐 배포
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+이 프로젝트는 **Netlify**에 배포되었습니다. 아래 링크에서 사이트를 확인할 수 있습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Tailwind Gallery 웹앱 배포 링크](https://cheerful-dragon-60e619.netlify.app/)
 
-### `npm test`
+## 🧑‍💻 기술 스택
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React**: 사용자 인터페이스 구성
+- **Tailwind CSS**: 유틸리티 클래스 기반의 스타일링
+- **Pixabay API**: 이미지 검색 및 데이터를 가져오는 API
+- **Vite**: 빠른 빌드 도구
 
-### `npm run build`
+## 🎥 주요 컴포넌트
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **App.jsx**: 이미지 검색 결과를 표시하며, 검색어 변경에 따라 이미지를 가져옵니다.
+- **ImageSearch.jsx**: 사용자가 검색어를 입력할 수 있는 검색 폼입니다.
+- **ImageCard.jsx**: 검색된 이미지를 카드 형태로 표시하며, 이미지의 정보를 함께 보여줍니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚠️ 빌드 오류 및 해결 방법
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+빌드시 `eslint`의 `jsx-a11y` 규칙에 의해 `alt` 속성에 불필요한 단어를 써서 발생된 오류입니다.
 
-### `npm run eject`
+### 문제 발생 원인
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+이 오류는 **alt 속성에 "image", "photo", "picture"**와 같은 단어를 사용해서 발생한 오류입니다. 이는 스크린 리더가 이미 `img` 요소를 인식할 수 있기 때문에, 이미지의 목적을 설명하는 단어만 포함해야 한다는 접근성 규칙입니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 해결 방법
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Netlify에서 빌드를 하지 않고 로컬에서 `npm run build` 명령어를 실행하여 오류의 원인을 찾았습니다.
+2. `alt` 속성 값을 `Photo`에서 `Photo1`로 변경하여 해당 규칙에 맞게 설정했습니다.
