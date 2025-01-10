@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const ImageCard = ({ image }) => {
   const tags = image.tags.split(", ");
