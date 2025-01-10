@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import image1 from "./images/image1.jpg";
+import ImageCard from "./components/ImageCard";
+import ImageSearch from "./components/ImageSearch";
 
 function App() {
   const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [term, setTrem] = useState("flowers"); //검색어
+  const [term, setTerm] = useState("flowers"); //검색어
 
   useEffect(() => {
     fetch(
@@ -13,36 +13,17 @@ function App() {
       .then((res) => res.json()) //요청결과를 JS로 변환
       .then((data) => setImages(data.hits)) //데이터 출력
       .catch((err) => console.log(err)); //에러발생시 에러출력
-  }, []);
+  }, [term]);
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
-      <img src={image1} alt="Photo" className="w-full" />
-      <div className="px-6 py-4">
-        <div className="font-bold text-purple-500 text-xl mb-2">
-          Photo by John Doe
-        </div>
-        <ul>
-          <li>
-            <strong>Views: </strong> 4000
-          </li>
-          <li>
-            <strong>Downloads: </strong> 300
-          </li>
-          <li>
-            <strong>Likes: </strong> 400
-          </li>
-        </ul>
-      </div>
-      <div className="px-6 py-4">
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-          #tag1
-        </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-          #tag2
-        </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-          #tag3
-        </span>
+    <div className="container mx-auto my-7">
+      <ImageSearch setTerm={setTerm} />
+      {images.length === 0 && (
+        <h1 className="text-5xl text-center mt-32">이미지가 없습니다.</h1>
+      )}
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        {images.map((image) => (
+          <ImageCard key={image.id} image={image} />
+        ))}
       </div>
     </div>
   );
